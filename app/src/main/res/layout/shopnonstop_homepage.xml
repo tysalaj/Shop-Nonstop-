@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="16dp"
+        android:text="Shop Nonstop"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="105dp"
+        tools:layout_editor_absoluteY="0dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/subtitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/titleTextView"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="8dp"
+        android:text="Making your shopping experience easy!"
+        android:textSize="16sp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="27dp"
+        tools:layout_editor_absoluteY="48dp" />
+
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="338dp"
+        android:layout_height="588dp"
+        android:layout_below="@id/subtitleTextView"
+        tools:layout_editor_absoluteX="37dp"
+        tools:layout_editor_absoluteY="111dp"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/settingsIcon"
+        android:layout_width="32dp"
+        android:layout_height="0dp"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/ic_settings"
+        tools:layout_editor_absoluteX="375dp"
+        tools:layout_editor_absoluteY="-72dp"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/shoppingCartIcon"
+        android:layout_width="28dp"
+        android:layout_height="25dp"
+        android:layout_toStartOf="@id/settingsIcon"
+        android:src="@drawable/ic_shopping_cart"
+        tools:layout_editor_absoluteX="331dp"
+        tools:layout_editor_absoluteY="16dp"
+        tools:ignore="MissingConstraints" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

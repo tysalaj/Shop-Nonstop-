@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textViewSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="136dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="121dp"
+        android:layout_marginBottom="10dp"
+        android:text="Settings"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textViewSubtitle"
+        app:layout_constraintEnd_toEndOf="@+id/textViewSubtitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewSettings"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="28dp"
+        android:text="Customize your Shop Nonstop experience!"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/imageViewUserImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSettings" />
+
+
+    <ImageView
+        android:id="@+id/imageViewUserImage"
+        android:layout_width="150dp"
+        android:layout_height="0dp"
+        android:layout_below="@id/textViewSubtitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="70dp"
+        android:layout_marginBottom="28dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toTopOf="@+id/textViewUserName"
+        app:layout_constraintStart_toStartOf="@+id/textViewSubtitle"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSubtitle" />
+
+    <TextView
+        android:id="@+id/textViewUserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageViewUserImage"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="7dp"
+        android:layout_marginBottom="24dp"
+        android:text="User's Name"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textViewUserEmail"
+        app:layout_constraintStart_toStartOf="@+id/textViewUserEmail"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewUserImage" />
+
+    <TextView
+        android:id="@+id/textViewUserEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewUserName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="38dp"
+        android:text="user@example.com"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonSetLocation"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewUserImage"
+        app:layout_constraintStart_toStartOf="@+id/imageViewUserImage"
+        app:layout_constraintTop_toBottomOf="@+id/textViewUserName" />
+
+    <Button
+        android:id="@+id/buttonSetLocation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewUserEmail"
+        android:layout_marginBottom="17dp"
+        android:text="Set Your Location"
+        app:layout_constraintBottom_toTopOf="@+id/buttonSetDistance"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewUserEmail" />
+
+    <Button
+        android:id="@+id/buttonSetDistance"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buttonSetLocation"
+        android:layout_marginBottom="55dp"
+        android:text="Set Distance: __"
+        app:layout_constraintBottom_toTopOf="@+id/buttonLogout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSetLocation" />
+
+    <Button
+        android:id="@+id/buttonLogout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buttonSetDistance"
+        android:layout_marginBottom="137dp"
+        android:text="Logout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSetDistance" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
