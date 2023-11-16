@@ -28,7 +28,6 @@ public class settingsPage extends AppCompatActivity {
         Button buttonLogout = findViewById(R.id.buttonLogout);
 
 
-
         String userName = getIntent().getStringExtra("text");
         String userEmail = getIntent().getStringExtra("email");
 
