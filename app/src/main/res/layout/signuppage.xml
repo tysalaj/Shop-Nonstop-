@@ -10,17 +10,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="130dp"
-        android:layout_marginTop="7dp"
+        android:layout_marginTop="16dp"
         android:text="Sign Up"
         android:textSize="24sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editTextName"
-        android:layout_width="0dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/textViewSignUp"
         android:layout_marginTop="75dp"
@@ -31,7 +32,7 @@
 
     <EditText
         android:id="@+id/editTextEmail"
-        android:layout_width="0dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/editTextName"
         android:layout_marginTop="20dp"
@@ -43,7 +44,7 @@
 
     <EditText
         android:id="@+id/editTextPasswordSignUp"
-        android:layout_width="0dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/editTextEmail"
         android:layout_marginTop="19dp"
@@ -55,7 +56,7 @@
 
     <EditText
         android:id="@+id/editTextConfirmPassword"
-        android:layout_width="0dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/editTextPasswordSignUp"
         android:layout_marginTop="27dp"
@@ -66,44 +67,53 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextPasswordSignUp" />
 
     <Button
-        android:id="@+id/buttonSignUpFinal"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/editTextConfirmPassword"
-        android:layout_marginBottom="166dp"
-        android:text="Sign Up"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textViewBackToLogin"
+        android:id="@+id/buttonCaptureImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/buttonSignUpFinal"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="16dp"
-        android:text="Back to Login"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonSignUpFinal" />
-
-    <Button
-        android:id="@+id/buttonCaptureImage"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
         android:layout_below="@id/editTextConfirmPassword"
-        android:layout_marginTop="71dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
         android:text="Take Picture"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextConfirmPassword" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttonCaptureImage"
+        app:layout_constraintVertical_bias="0.059">
+
+        <Button
+            android:id="@+id/buttonSignUpFinal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_below="@id/buttonCaptureImage"
+            android:text="Sign Up" />
+
+        <Button
+            android:id="@+id/backToLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/buttonSignUpFinal"
+            android:layout_alignParentEnd="true"
+            android:text="Back to Login" />
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/imageViewCapturedImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/buttonCaptureImage"
+        android:layout_below="@id/backToLogin"
         android:layout_marginTop="16dp"
         android:scaleType="centerCrop"
         android:visibility="gone"

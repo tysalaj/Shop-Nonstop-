@@ -14,8 +14,6 @@ public class ShopNonStopHomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shopnonstop_homepage);
 
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.mapFragment);
 
         ImageView settingsIcon = findViewById(R.id.settingsIcon);
         ImageView shoppingCartIcon = findViewById(R.id.shoppingCartIcon);

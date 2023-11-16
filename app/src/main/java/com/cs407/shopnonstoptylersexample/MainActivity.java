@@ -25,12 +25,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button signUp = findViewById(R.id.buttonSignUp);
-        Button homePage = findViewById(R.id.buttonLogin);
+        Button loginButton = findViewById(R.id.buttonLogin);
         usernameEditText = findViewById(R.id.editTextUsername);
         passwordEditText = findViewById(R.id.editTextPassword);
 
 
-        homePage.setOnClickListener(new View.OnClickListener() {
+        loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, ShopNonStopHomePage.class);

@@ -18,7 +18,8 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textViewSubtitle"
-        app:layout_constraintEnd_toEndOf="@+id/textViewSubtitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,6 +34,7 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/imageViewUserImage"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewSettings" />
 
@@ -43,11 +45,12 @@
         android:layout_height="0dp"
         android:layout_below="@id/textViewSubtitle"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="70dp"
         android:layout_marginBottom="28dp"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toTopOf="@+id/textViewUserName"
-        app:layout_constraintStart_toStartOf="@+id/textViewSubtitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewSubtitle" />
 
     <TextView
@@ -62,7 +65,9 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textViewUserEmail"
-        app:layout_constraintStart_toStartOf="@+id/textViewUserEmail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewUserImage" />
 
     <TextView
@@ -75,13 +80,14 @@
         android:text="user@example.com"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonSetLocation"
-        app:layout_constraintEnd_toEndOf="@+id/imageViewUserImage"
-        app:layout_constraintStart_toStartOf="@+id/imageViewUserImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewUserName" />
 
     <Button
         android:id="@+id/buttonSetLocation"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/textViewUserEmail"
         android:layout_marginBottom="17dp"
@@ -93,7 +99,7 @@
 
     <Button
         android:id="@+id/buttonSetDistance"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/buttonSetLocation"
         android:layout_marginBottom="55dp"
@@ -105,7 +111,7 @@
 
     <Button
         android:id="@+id/buttonLogout"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/buttonSetDistance"
         android:layout_marginBottom="137dp"

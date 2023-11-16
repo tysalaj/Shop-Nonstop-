@@ -16,6 +16,7 @@ public class signupPage extends AppCompatActivity {
     private EditText editTextEmail;
     private Button buttonSignUpFinal;
     private Button buttonSignUp;
+    private Button backToLogin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,7 +25,8 @@ public class signupPage extends AppCompatActivity {
         editTextName = findViewById(R.id.editTextName);
         editTextEmail = findViewById(R.id.editTextEmail);
         buttonSignUpFinal = findViewById(R.id.buttonSignUpFinal);
-        buttonSignUp = findViewById(R.id.buttonSignUpFinal);
+        backToLogin = findViewById(R.id.backToLogin);
+
 
 
 
@@ -37,13 +39,16 @@ public class signupPage extends AppCompatActivity {
                 intent.putExtra("text", text);
                 intent.putExtra("email", email);
                 startActivity(intent);
-
-                Intent thirdIntent = new Intent(signupPage.this, settingsPage.class);
-                startActivity(thirdIntent);
             }
         });
 
-
+        backToLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(signupPage.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 

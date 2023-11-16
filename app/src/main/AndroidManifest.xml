@@ -13,17 +13,29 @@
         android:theme="@style/Theme.ShopNonStopTylersExample"
         tools:targetApi="34">
         <activity
+            android:name=".signupPage"
+            android:exported="false" />
+        <activity
+            android:name=".settingsPage"
+            android:exported="false" />
+        <activity
+            android:name=".ShopNonStopHomePage"
+            android:exported="false" />
+        <activity
+            android:name=".ShoppingList"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
-            <meta-data
-                android:name="com.google.android.geo.API_KEY"
-                android:value="AIzaSyASLbZssw7uNVXf5ZAc3c3YvMQ12jVrUvE"/>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyC7oO-hdgU357KQzsDVSclmbrbD2lizCWM" />
     </application>
 
 </manifest>
