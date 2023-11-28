@@ -21,7 +21,7 @@ public class ShoppingList extends AppCompatActivity {
         settingsIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ShoppingList.this, settingsPage.class);
+                Intent intent = new Intent(ShoppingList.this, SettingsPage.class);
                 startActivity(intent);
             }
         });

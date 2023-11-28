@@ -7,8 +7,6 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.maps.SupportMapFragment;
-
 public class ShopNonStopHomePage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,7 +19,7 @@ public class ShopNonStopHomePage extends AppCompatActivity {
         settingsIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ShopNonStopHomePage.this, settingsPage.class);
+                Intent intent = new Intent(ShopNonStopHomePage.this, SettingsPage.class);
                 startActivity(intent);
             }
         });

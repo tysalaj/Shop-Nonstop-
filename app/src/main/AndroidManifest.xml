@@ -13,10 +13,10 @@
         android:theme="@style/Theme.ShopNonStopTylersExample"
         tools:targetApi="34">
         <activity
-            android:name=".signupPage"
+            android:name=".SignupPage"
             android:exported="false" />
         <activity
-            android:name=".settingsPage"
+            android:name=".SettingsPage"
             android:exported="false" />
         <activity
             android:name=".ShopNonStopHomePage"
