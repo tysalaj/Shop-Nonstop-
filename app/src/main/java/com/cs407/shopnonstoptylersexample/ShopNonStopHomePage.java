@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-
+import com.google.android.gms.maps.SupportMapFragment;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ShopNonStopHomePage extends AppCompatActivity {

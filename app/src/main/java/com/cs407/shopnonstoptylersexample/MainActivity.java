@@ -1,7 +1,10 @@
 package com.cs407.shopnonstoptylersexample;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
