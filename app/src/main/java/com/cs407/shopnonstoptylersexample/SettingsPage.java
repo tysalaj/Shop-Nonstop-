@@ -36,6 +36,17 @@ public class SettingsPage extends AppCompatActivity {
             textViewUserEmail.setText(userEmail);
         }
 
+        ImageView shoppingCartIcon = findViewById(R.id.shoppingCartIcon);
+
+
+        shoppingCartIcon.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent(SettingsPage.this, ShoppingList.class);
+                startActivity(intent);
+            }
+        });
+
         buttonLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
