@@ -30,12 +30,14 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     EditText username = findViewById(R.id.editTextUsername);
                     EditText password = findViewById(R.id.editTextPassword);
-                    if (username.getText().toString().equals("") || password.getText().toString().equals("")) {
+                    String currUsername = username.getText().toString().trim();
+                    String currPassword = password.getText().toString().trim();
+                    if (currUsername.isEmpty() || currPassword.isEmpty()) {
                         displayCredentialsToast();
                         return;
                     }
                     SharedPreferences sharedPreferences = getSharedPreferences("com.cs407.shopnonstoptylersexample", Context.MODE_PRIVATE);
-                    sharedPreferences.edit().putString("username", username.getText().toString()).apply();
+                    sharedPreferences.edit().putString("username", currUsername).apply();
                     gotoHomePage();
                 }
             });

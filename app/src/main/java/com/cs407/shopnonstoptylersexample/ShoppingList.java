@@ -65,7 +65,7 @@ public class ShoppingList extends AppCompatActivity {
                 EditText item = findViewById(R.id.addItem);
                 String itemName = item.getText().toString().trim();
                 ArrayList<Item> currShoppingItems = dbHelper.readNotes(username);
-                if (!itemName.equals("")) {
+                if (!itemName.isEmpty()) {
                     for (Item currItem : currShoppingItems) {
                         if (currItem.getItemName().toLowerCase().equals(itemName.toLowerCase())) {
                             displayItemExistsToast();
