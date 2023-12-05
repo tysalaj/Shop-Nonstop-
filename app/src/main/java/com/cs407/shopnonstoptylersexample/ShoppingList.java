@@ -74,6 +74,7 @@ public class ShoppingList extends AppCompatActivity {
                     }
                     shoppingListAdapter.add(itemName);
                     dbHelper.saveNotes(username, itemName);
+                    item.setText("");
                 } else {
                    displayEmptyItemToast();
                 }
