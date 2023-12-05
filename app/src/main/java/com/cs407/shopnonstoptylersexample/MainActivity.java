@@ -19,9 +19,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SharedPreferences sharedPreferences = getSharedPreferences("com.407.shopnonstoptylersexample", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("com.cs407.shopnonstoptylersexample", MODE_PRIVATE);
         String username = sharedPreferences.getString("username", "");
-        Log.d("INFO", username);
         if (username != "") {
             gotoHomePage();
         } else {
@@ -37,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
                 EditText username = findViewById(R.id.editTextUsername);
                 EditText password = findViewById(R.id.editTextPassword);
                 if (username.getText().toString().equals("") || password.getText().toString().equals("")) return;
-                SharedPreferences sharedPreferences = getSharedPreferences("com.cs407.lab5_milestone", Context.MODE_PRIVATE);
+                SharedPreferences sharedPreferences = getSharedPreferences("com.cs407.shopnonstoptylersexample", Context.MODE_PRIVATE);
                 sharedPreferences.edit().putString("username", username.getText().toString()).apply();
                 gotoHomePage();
             }

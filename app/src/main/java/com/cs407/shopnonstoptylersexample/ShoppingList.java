@@ -24,7 +24,7 @@ public class ShoppingList extends AppCompatActivity {
 
         ImageView settings = findViewById(R.id.settingsIcon);
         ImageView add = findViewById(R.id.add);
-        SharedPreferences sharedPreferences = getSharedPreferences("com.cs407.lab5_milestone", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("com.cs407.shopnonstoptylersexample", MODE_PRIVATE);
         String username = sharedPreferences.getString("username", "");
         String upUsername = username.substring(0, 1).toUpperCase() + username.substring(1);
         TextView textView = findViewById(R.id.subtitleTextView);

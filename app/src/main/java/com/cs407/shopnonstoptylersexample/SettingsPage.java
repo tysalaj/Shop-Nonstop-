@@ -52,7 +52,6 @@ public class SettingsPage extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(SettingsPage.this, MainActivity.class);
                 startActivity(intent);
-                finish();
             }
         });
     }
