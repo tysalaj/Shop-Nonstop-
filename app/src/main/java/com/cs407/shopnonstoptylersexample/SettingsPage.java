@@ -50,6 +50,8 @@ public class SettingsPage extends AppCompatActivity {
         buttonLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                SharedPreferences sharedPreferences = getSharedPreferences("com.cs407.shopnonstoptylersexample", MODE_PRIVATE);
+                sharedPreferences.edit().clear().apply();
                 Intent intent = new Intent(SettingsPage.this, MainActivity.class);
                 startActivity(intent);
             }
