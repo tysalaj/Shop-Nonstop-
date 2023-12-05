@@ -35,7 +35,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 EditText username = findViewById(R.id.editTextUsername);
                 EditText password = findViewById(R.id.editTextPassword);
-                if (username.getText().toString().equals("") || password.getText().toString().equals("")) return;
+                if (username.getText().toString().equals("") || password.getText().toString().equals("")) {
+                    displayCredentialsToast();
+                    return;
+                }
                 SharedPreferences sharedPreferences = getSharedPreferences("com.cs407.shopnonstoptylersexample", Context.MODE_PRIVATE);
                 sharedPreferences.edit().putString("username", username.getText().toString()).apply();
                 gotoHomePage();
@@ -49,6 +52,10 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    public void displayCredentialsToast() {
+        Toast.makeText(this, "Enter a username and a password", Toast.LENGTH_SHORT).show();
     }
 
     public void gotoHomePage() {
