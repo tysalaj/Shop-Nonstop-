@@ -3,6 +3,7 @@ package com.cs407.shopnonstoptylersexample;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.content.Intent;
@@ -15,25 +16,30 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText usernameEditText;
-    private EditText passwordEditText;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        SharedPreferences sharedPreferences = getSharedPreferences("com.407.shopnonstoptylersexample", MODE_PRIVATE);
+        String username = sharedPreferences.getString("username", "");
+        Log.d("INFO", username);
+        if (username != "") {
+            gotoHomePage();
+        } else {
+            setContentView(R.layout.activity_main);
+        }
 
         Button signUp = findViewById(R.id.buttonSignUp);
         Button loginButton = findViewById(R.id.buttonLogin);
-        usernameEditText = findViewById(R.id.editTextUsername);
-        passwordEditText = findViewById(R.id.editTextPassword);
-
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, ShopNonStopHomePage.class);
-                startActivity(intent);
+                EditText username = findViewById(R.id.editTextUsername);
+                EditText password = findViewById(R.id.editTextPassword);
+                if (username.getText().toString().equals("") || password.getText().toString().equals("")) return;
+                SharedPreferences sharedPreferences = getSharedPreferences("com.cs407.lab5_milestone", Context.MODE_PRIVATE);
+                sharedPreferences.edit().putString("username", username.getText().toString()).apply();
+                gotoHomePage();
             }
         });
 
@@ -46,10 +52,14 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void gotoHomePage() {
+        Intent intent = new Intent(this, ShopNonStopHomePage.class);
+        startActivity(intent);
+    }
 
     private void attemptLogin() {
-        String username = usernameEditText.getText().toString();
-        String password = passwordEditText.getText().toString();
+        String username = "";
+        String password = "";
 
         // Validate credentials (replace this with your own logic)
         if (isValidCredentials(username, password)) {
