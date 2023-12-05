@@ -22,33 +22,33 @@ public class MainActivity extends AppCompatActivity {
             gotoHomePage();
         } else {
             setContentView(R.layout.activity_main);
+            Button signUp = findViewById(R.id.buttonSignUp);
+            Button loginButton = findViewById(R.id.buttonLogin);
+
+            loginButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    EditText username = findViewById(R.id.editTextUsername);
+                    EditText password = findViewById(R.id.editTextPassword);
+                    if (username.getText().toString().equals("") || password.getText().toString().equals("")) {
+                        displayCredentialsToast();
+                        return;
+                    }
+                    SharedPreferences sharedPreferences = getSharedPreferences("com.cs407.shopnonstoptylersexample", Context.MODE_PRIVATE);
+                    sharedPreferences.edit().putString("username", username.getText().toString()).apply();
+                    gotoHomePage();
+                }
+            });
+
+            signUp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(MainActivity.this, SignupPage.class);
+                    startActivity(intent);
+                }
+            });
         }
 
-        Button signUp = findViewById(R.id.buttonSignUp);
-        Button loginButton = findViewById(R.id.buttonLogin);
-
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                EditText username = findViewById(R.id.editTextUsername);
-                EditText password = findViewById(R.id.editTextPassword);
-                if (username.getText().toString().equals("") || password.getText().toString().equals("")) {
-                    displayCredentialsToast();
-                    return;
-                }
-                SharedPreferences sharedPreferences = getSharedPreferences("com.cs407.shopnonstoptylersexample", Context.MODE_PRIVATE);
-                sharedPreferences.edit().putString("username", username.getText().toString()).apply();
-                gotoHomePage();
-            }
-        });
-
-        signUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, SignupPage.class);
-                startActivity(intent);
-            }
-        });
     }
 
     public void displayCredentialsToast() {
