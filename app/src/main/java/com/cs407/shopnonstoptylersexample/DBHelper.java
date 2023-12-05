@@ -29,13 +29,7 @@ public class DBHelper {
                 new String[]{username, itemName});
     }
 
-    public void updateNotes(String username, String oldItemName, String newItemName) {
-        createTable();
-        sqLiteDatabase.execSQL("UPDATE items SET newItemName=? WHERE oldItemName=? AND username=?",
-                new String[]{newItemName, oldItemName, username});
-    }
-
-    public void deleteNote(String username, String itemName) {
+    public void deleteItem(String username, String itemName) {
         createTable();
         String date = "";
         Cursor cursor = sqLiteDatabase.rawQuery("SELECT username FROM items WHERE itemName = ?",
