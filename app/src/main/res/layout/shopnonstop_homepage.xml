@@ -11,9 +11,15 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -21,33 +27,34 @@
                 android:id="@+id/titleTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_gravity="left"
+                android:baselineAligned="false"
                 android:text="Shop Nonstop"
-                android:textSize="24sp"
+                android:textSize="32sp"
                 android:textStyle="bold"
                 tools:ignore="MissingConstraints" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+            <Space
+                android:layout_width="45dp"
+                android:layout_height="30dp"
+                android:layout_weight="1" />
 
-                <ImageView
-                    android:id="@+id/shoppingCartIcon"
-                    android:layout_width="28dp"
-                    android:layout_height="25dp"
-                    android:src="@drawable/ic_shopping_cart"
-                    tools:layout_editor_absoluteX="331dp"
-                    tools:layout_editor_absoluteY="16dp" />
+            <ImageView
+                android:id="@+id/shoppingCartIcon"
+                android:layout_width="28dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_shopping_cart"
+                android:layout_marginRight="5dp"
+                tools:layout_editor_absoluteX="331dp"
+                tools:layout_editor_absoluteY="16dp" />
 
-                <ImageView
-                    android:id="@+id/settingsIcon"
-                    android:layout_width="32dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/ic_settings"
-                    tools:layout_editor_absoluteX="375dp"
-                    tools:layout_editor_absoluteY="-72dp" />
-            </LinearLayout>
+            <ImageView
+                android:id="@+id/settingsIcon"
+                android:layout_width="32dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_settings"
+                tools:layout_editor_absoluteX="375dp"
+                tools:layout_editor_absoluteY="-72dp" />
 
 
         </LinearLayout>
@@ -57,22 +64,46 @@
             android:id="@+id/subtitleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:paddingTop="8dp"
+            android:layout_gravity="center|left"
+            android:layout_marginLeft="12dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="12dp"
             android:text="Making your shopping experience easy!"
-            android:textSize="16sp"
+            android:textSize="14sp"
             tools:ignore="MissingConstraints" />
 
-        <Space
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="15dp" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/mapFragment"
-            android:name="com.google.android.gms.maps.SupportMapFragment"
+            <SearchView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:background="#F0F0F0"
+                android:paddingBottom="12dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="650dp"
-            tools:ignore="MissingConstraints" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="12dp" />
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/mapFragment"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:ignore="MissingConstraints" />
+        </LinearLayout>
+
     </LinearLayout>
 
 
