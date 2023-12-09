@@ -14,8 +14,8 @@ public class SignupPage extends AppCompatActivity {
 
     private EditText editTextName;
     private EditText editTextEmail;
+    private Button uploadPhoto;
     private Button buttonSignUpFinal;
-    private Button buttonSignUp;
     private Button backToLogin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,11 +24,9 @@ public class SignupPage extends AppCompatActivity {
 
         editTextName = findViewById(R.id.editTextName);
         editTextEmail = findViewById(R.id.editTextEmail);
+        uploadPhoto = findViewById(R.id.buttonCaptureImage);
         buttonSignUpFinal = findViewById(R.id.buttonSignUpFinal);
         backToLogin = findViewById(R.id.backToLogin);
-
-
-
 
         buttonSignUpFinal.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,6 +37,13 @@ public class SignupPage extends AppCompatActivity {
                 intent.putExtra("text", text);
                 intent.putExtra("email", email);
                 startActivity(intent);
+            }
+        });
+
+        uploadPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // implement code to upload photo from photo library
             }
         });
 
