@@ -11,12 +11,16 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class SettingsPage extends AppCompatActivity {
+    private FirebaseAuth auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settingspage);
 
+        auth = FirebaseAuth.getInstance();
         ImageView imageViewUserImage = findViewById(R.id.imageViewUserImage);
         TextView textViewUserName = findViewById(R.id.textViewUserName);
         TextView textViewUserEmail = findViewById(R.id.textViewUserEmail);
@@ -59,6 +63,7 @@ public class SettingsPage extends AppCompatActivity {
                 stopService(new Intent(SettingsPage.this, LocationService.class));
                 SharedPreferences sharedPreferences = getSharedPreferences("com.cs407.shopnonstoptylersexample", MODE_PRIVATE);
                 sharedPreferences.edit().clear().apply();
+                auth.signOut();
                 Intent intent = new Intent(SettingsPage.this, MainActivity.class);
                 startActivity(intent);
             }

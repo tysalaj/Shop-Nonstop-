@@ -1,19 +1,11 @@
 package com.cs407.shopnonstoptylersexample;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -52,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
                     String currUsername = username.getText().toString().trim();
                     String currPassword = password.getText().toString().trim();
                     if (currUsername.isEmpty() || currPassword.isEmpty()) {
-                        displayCredentialsToast();
+                        Toast.makeText(MainActivity.this, "Enter a username and a password", Toast.LENGTH_SHORT).show();
                     } else {
                         auth.signInWithEmailAndPassword(currUsername, currPassword).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                             @Override
@@ -82,33 +74,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-    public void displayCredentialsToast() {
-        Toast.makeText(this, "Enter a username and a password", Toast.LENGTH_SHORT).show();
-    }
-
     public void gotoHomePage() {
         Intent intent = new Intent(this, ShopNonStopHomePage.class);
         startActivity(intent);
-    }
-    private void attemptLogin() {
-        String username = "";
-        String password = "";
-
-        // Validate credentials (replace this with your own logic)
-        if (isValidCredentials(username, password)) {
-            // Successful login, navigate to the next screen
-            Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show();
-            // Add code to navigate to the next screen, for example:
-            // Intent intent = new Intent(this, NextActivity.class);
-            // startActivity(intent);
-        } else {
-            // Invalid credentials, show an error message
-            Toast.makeText(this, "Invalid credentials", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private boolean isValidCredentials(String username, String password) {
-        // Replace this with your own logic to validate the credentials
-        return username.equals("example") && password.equals("password");
     }
 }
