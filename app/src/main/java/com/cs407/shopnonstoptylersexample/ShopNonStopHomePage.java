@@ -1,11 +1,12 @@
 package com.cs407.shopnonstoptylersexample;
 
+import android.app.ActivityManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import com.google.android.gms.maps.SupportMapFragment;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,7 +14,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 public class ShopNonStopHomePage extends AppCompatActivity {
-    private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 12;
+    private static final int PERMISSION_REQUEST = 12;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shopnonstop_homepage);
@@ -21,15 +22,15 @@ public class ShopNonStopHomePage extends AppCompatActivity {
 
         ImageView settingsIcon = findViewById(R.id.settingsIcon);
         ImageView shoppingCartIcon = findViewById(R.id.shoppingCartIcon);
-        ImageView homePageIcon = findViewById(R.id.homePage);
 
-        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                || ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this,
                     new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.POST_NOTIFICATIONS},
-                    PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+                    PERMISSION_REQUEST);
         } else {
-            startLocationService();
+            if (!LocationService.IS_SERVICE_RUNNING)
+                startLocationService();
         }
 
         settingsIcon.setOnClickListener(new View.OnClickListener() {
@@ -62,5 +63,4 @@ public class ShopNonStopHomePage extends AppCompatActivity {
         Intent serviceIntent = new Intent(this, LocationService.class);
         startForegroundService(serviceIntent);
     }
-
 }

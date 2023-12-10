@@ -20,6 +20,7 @@ import androidx.core.app.NotificationCompat;
 
 public class LocationService extends Service {
 
+    public static boolean IS_SERVICE_RUNNING = false;
     private static int NOTIFICATION_ID = 1;
     private static final String FIRST_CHANNEL_ID = "Location Tracking";
     private static final String SECOND_CHANNEL_ID = "Nearby Groceries";
@@ -33,6 +34,7 @@ public class LocationService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+        IS_SERVICE_RUNNING = true;
     }
 
     @Override
@@ -54,6 +56,7 @@ public class LocationService extends Service {
     public void onDestroy() {
         super.onDestroy();
         stopLocationUpdates();
+        IS_SERVICE_RUNNING = false;
     }
 
     private void createNotificationChannel(String channelId) {
