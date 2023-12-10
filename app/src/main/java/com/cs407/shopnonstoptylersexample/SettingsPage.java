@@ -16,8 +16,6 @@ public class SettingsPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settingspage);
 
-        TextView textViewSettings = findViewById(R.id.textViewSettings);
-        TextView textViewSubtitle = findViewById(R.id.textViewSubtitle);
         ImageView imageViewUserImage = findViewById(R.id.imageViewUserImage);
         TextView textViewUserName = findViewById(R.id.textViewUserName);
         TextView textViewUserEmail = findViewById(R.id.textViewUserEmail);
