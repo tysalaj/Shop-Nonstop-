@@ -24,6 +24,7 @@ public class ShoppingList extends AppCompatActivity {
         setContentView(R.layout.shoppinglistpage);
 
         ImageView settings = findViewById(R.id.settingsIcon);
+        ImageView homePageIcon = findViewById(R.id.homePage);
         ImageView addIcon = findViewById(R.id.addIcon);
         SharedPreferences sharedPreferences = getSharedPreferences("com.cs407.shopnonstoptylersexample", MODE_PRIVATE);
         String username = sharedPreferences.getString("username", "");
@@ -35,6 +36,14 @@ public class ShoppingList extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ShoppingList.this, SettingsPage.class);
+                startActivity(intent);
+            }
+        });
+
+        homePageIcon.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent(ShoppingList.this, ShopNonStopHomePage.class);
                 startActivity(intent);
             }
         });

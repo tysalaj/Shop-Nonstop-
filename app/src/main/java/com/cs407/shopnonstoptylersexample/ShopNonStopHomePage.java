@@ -15,6 +15,7 @@ public class ShopNonStopHomePage extends AppCompatActivity {
 
         ImageView settingsIcon = findViewById(R.id.settingsIcon);
         ImageView shoppingCartIcon = findViewById(R.id.shoppingCartIcon);
+        ImageView homePageIcon = findViewById(R.id.homePage);
 
         settingsIcon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -31,5 +32,6 @@ public class ShopNonStopHomePage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
 }
