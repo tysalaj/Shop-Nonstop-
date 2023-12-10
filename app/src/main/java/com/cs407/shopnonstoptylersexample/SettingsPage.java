@@ -33,12 +33,21 @@ public class SettingsPage extends AppCompatActivity {
         }
 
         ImageView shoppingCartIcon = findViewById(R.id.shoppingCartIcon);
+        ImageView homePageIcon = findViewById(R.id.homePage);
 
 
         shoppingCartIcon.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(SettingsPage.this, ShoppingList.class);
+                startActivity(intent);
+            }
+        });
+
+        homePageIcon.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent(SettingsPage.this, ShopNonStopHomePage.class);
                 startActivity(intent);
             }
         });
