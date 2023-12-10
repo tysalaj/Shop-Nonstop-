@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ShopNonStop Tylers Example</string>
+    <string name="app_name">Shop NonStop</string>
     <string-array
         name="popular_items">
         <item
