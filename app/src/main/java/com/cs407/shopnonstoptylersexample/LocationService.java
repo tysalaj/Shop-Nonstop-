@@ -30,6 +30,7 @@ public class LocationService extends Service {
     private LocationManager locationManager;
     private LocationListener locationListener;
 
+    // Places API requires billing info, will user coordinates of groceries in Madison for development
     private static final double coordinates[][] = new double[][]{{43.07276725579338, -89.39003664417623}, {43.07308515174808, -89.3977415422632}, {43.075295211878796, -89.39613221683253}};
 
     @Override
