@@ -130,5 +130,4 @@ public class LocationService extends Service {
 
         return R * c; // Distance in miles
     }
-
 }
