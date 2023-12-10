@@ -21,8 +21,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+
 
 public class MainActivity extends AppCompatActivity {
+    private FirebaseAuth auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
             gotoHomePage();
         } else {
             setContentView(R.layout.activity_main);
+            auth = FirebaseAuth.getInstance();
             Button signUp = findViewById(R.id.buttonSignUp);
             Button loginButton = findViewById(R.id.buttonLogin);
 
@@ -46,11 +53,22 @@ public class MainActivity extends AppCompatActivity {
                     String currPassword = password.getText().toString().trim();
                     if (currUsername.isEmpty() || currPassword.isEmpty()) {
                         displayCredentialsToast();
-                        return;
+                    } else {
+                        auth.signInWithEmailAndPassword(currUsername, currPassword).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                            @Override
+                            public void onSuccess(AuthResult authResult) {
+                                Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                                SharedPreferences sharedPreferences = getSharedPreferences("com.cs407.shopnonstoptylersexample", Context.MODE_PRIVATE);
+                                sharedPreferences.edit().putString("username", currUsername).apply();
+                                gotoHomePage();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(MainActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
+                            }
+                        });
                     }
-                    SharedPreferences sharedPreferences = getSharedPreferences("com.cs407.shopnonstoptylersexample", Context.MODE_PRIVATE);
-                    sharedPreferences.edit().putString("username", currUsername).apply();
-                    gotoHomePage();
                 }
             });
 
