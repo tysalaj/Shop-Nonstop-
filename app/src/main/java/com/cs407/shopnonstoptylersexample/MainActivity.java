@@ -1,9 +1,14 @@
 package com.cs407.shopnonstoptylersexample;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,12 +17,24 @@ import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
+    private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 12;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         SharedPreferences sharedPreferences = getSharedPreferences("com.cs407.shopnonstoptylersexample", MODE_PRIVATE);
         String username = sharedPreferences.getString("username", "");
+
+        // Check if the permission is not granted
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            // Request the permission
+            ActivityCompat.requestPermissions(this,
+                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                    PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+        }
+
         if (username != "") {
             gotoHomePage();
         } else {
@@ -53,6 +70,19 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            startLocationService();
+        }
+    }
+
+    private void startLocationService() {
+        Intent serviceIntent = new Intent(this, LocationService.class);
+        startForegroundService(serviceIntent);
+    }
+
     public void displayCredentialsToast() {
         Toast.makeText(this, "Enter a username and a password", Toast.LENGTH_SHORT).show();
     }
@@ -60,8 +90,8 @@ public class MainActivity extends AppCompatActivity {
     public void gotoHomePage() {
         Intent intent = new Intent(this, ShopNonStopHomePage.class);
         startActivity(intent);
+        startLocationService();
     }
-
     private void attemptLogin() {
         String username = "";
         String password = "";
