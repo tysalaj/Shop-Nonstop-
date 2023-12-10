@@ -41,18 +41,17 @@
 
             <ImageView
                 android:id="@+id/shoppingCartIcon"
-                android:layout_width="28dp"
-                android:layout_height="25dp"
-                android:src="@drawable/ic_shopping_cart"
-                android:layout_marginRight="5dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/shopping_bag"
                 tools:layout_editor_absoluteX="331dp"
                 tools:layout_editor_absoluteY="16dp" />
 
             <ImageView
                 android:id="@+id/settingsIcon"
-                android:layout_width="32dp"
-                android:layout_height="40dp"
-                android:src="@drawable/ic_settings"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/settings"
                 tools:layout_editor_absoluteX="375dp"
                 tools:layout_editor_absoluteY="-72dp" />
 
@@ -82,8 +81,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp"
-                android:background="#F0F0F0"
-                android:paddingBottom="12dp" />
+                android:background="#F0F0F0" />
 
         </LinearLayout>
 

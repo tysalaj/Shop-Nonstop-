@@ -29,7 +29,7 @@ public class ShoppingList extends AppCompatActivity {
         String username = sharedPreferences.getString("username", "");
         String upUsername = username.substring(0, 1).toUpperCase() + username.substring(1);
         TextView textView = findViewById(R.id.subtitleTextView);
-        textView.setText(upUsername + "'s Shopping List");
+//        textView.setText(upUsername + "'s Shopping List");
 
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,10 +54,10 @@ public class ShoppingList extends AppCompatActivity {
         ListView shoppingListView = findViewById(R.id.shoppingListViewPopular);
         shoppingListView.setAdapter(shoppingListAdapter);
 
-        ListView shoppingListViewPopular = findViewById(R.id.shoppingListView);
-        ArrayList<String> shoppingItemsPop = new ArrayList<>();
-        ArrayAdapter<String> adapterPop = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, shoppingItemsPop);
-        shoppingListViewPopular.setAdapter(adapterPop);
+//        ListView shoppingListViewPopular = findViewById(R.id.shoppingListView);
+//        ArrayList<String> shoppingItemsPop = new ArrayList<>();
+//        ArrayAdapter<String> adapterPop = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, shoppingItemsPop);
+//        shoppingListViewPopular.setAdapter(adapterPop);
 
         addIcon.setOnClickListener(new View.OnClickListener() {
             @Override

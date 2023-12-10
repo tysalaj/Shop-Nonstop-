@@ -5,115 +5,176 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ListView
-        android:id="@+id/shoppingListView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_below="@id/subtitleTextView"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="84dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/settingsIcon" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/titleTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="110dp"
-        android:layout_marginEnd="72dp"
-        android:layout_marginBottom="11dp"
-        android:paddingTop="16dp"
-        android:text="Shopping List"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/subtitleTextView"
-        app:layout_constraintEnd_toStartOf="@+id/settingsIcon"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
 
-    <EditText
-        android:id="@+id/addItem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="104dp"
-        android:layout_marginEnd="22dp"
-        android:layout_marginBottom="18dp"
-        android:ems="10"
-        android:hint="Add Item"
-        android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/shoppingListViewPopular"
-        app:layout_constraintEnd_toStartOf="@+id/addIcon"
-        app:layout_constraintStart_toStartOf="parent" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/titleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:baselineAligned="false"
+                android:text="Shop Nonstop"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                tools:ignore="MissingConstraints" />
+
+            <Space
+                android:layout_width="45dp"
+                android:layout_height="30dp"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:id="@+id/shoppingCartIcon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/shopping_bag"
+                tools:layout_editor_absoluteX="331dp"
+                tools:layout_editor_absoluteY="16dp" />
+
+            <ImageView
+                android:id="@+id/settingsIcon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/settings"
+                tools:layout_editor_absoluteX="375dp"
+                tools:layout_editor_absoluteY="-72dp" />
 
 
-    <TextView
-        android:id="@+id/subtitleTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/titleTextView"
-        android:layout_marginBottom="38dp"
-        android:paddingTop="8dp"
-        android:text="Personalize your shopping list!"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/addItem"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/settingsIcon"
-        app:layout_constraintHorizontal_bias="0.707"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleTextView"
-        app:layout_constraintVertical_bias="0.5" />
+        </LinearLayout>
 
-    <ImageView
-        android:id="@+id/addIcon"
-        android:layout_width="0dp"
-        android:layout_height="46dp"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="116dp"
-        android:layout_marginEnd="44dp"
-        android:src="@drawable/baseline_add_shopping_cart_24"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/settingsIcon"
-        android:layout_width="31dp"
-        android:layout_height="46dp"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="443dp"
-        android:src="@drawable/ic_settings"
-        app:layout_constraintBottom_toTopOf="@+id/shoppingListView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/titleTextView"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/subtitleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|left"
+            android:layout_marginLeft="12dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="12dp"
+            android:text="Personalize your shopping list!"
+            android:textSize="14sp"
+            tools:ignore="MissingConstraints" />
 
-    <ListView
-        android:id="@+id/shoppingListViewPopular"
-        android:layout_width="350dp"
-        android:layout_height="250dp"
-        android:layout_below="@id/subtitleTextView"
-        android:layout_marginStart="37dp"
-        android:layout_marginTop="92dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/subtitleTextView" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginBottom="18dp"
-        android:text="Most Popular Items"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/shoppingListView"
-        app:layout_constraintStart_toStartOf="@+id/shoppingListView" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="24dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/currentList"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Your Current Shopping List"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <Space
+                    android:layout_width="242dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/addItem"
+                    android:layout_width="364dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginEnd="0dp"
+                    android:layout_marginBottom="0dp"
+                    android:ems="10"
+                    android:hint="Add Item"
+                    android:inputType="text"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:id="@+id/addIcon"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="0dp"
+                    android:src="@drawable/add" />
+
+            </LinearLayout>
+
+            <ListView
+                android:id="@+id/shoppingListViewPopular"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_below="@id/subtitleTextView"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:background="#F0F0F0" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/mostPopularItems"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingTop="24dp"
+                    android:paddingBottom="8dp"
+                    android:text="Your Most Popular Items"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ListView
+                    android:id="@+id/mostPopularItemsList"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:background="#F0F0F0"
+                    android:entries="@array/popular_items" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
