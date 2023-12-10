@@ -11,14 +11,11 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.location.LocationListener;
 import android.os.Build;
-import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
 
-import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 
 
 public class LocationService extends Service {
@@ -30,7 +27,7 @@ public class LocationService extends Service {
     private LocationManager locationManager;
     private LocationListener locationListener;
 
-    // Places API requires billing info, will user coordinates of groceries in Madison for development
+    // Places API requires billing info, will use coordinates of groceries in Madison for development
     private static final double coordinates[][] = new double[][]{{43.07276725579338, -89.39003664417623}, {43.07308515174808, -89.3977415422632}, {43.075295211878796, -89.39613221683253}};
 
     @Override
@@ -42,7 +39,7 @@ public class LocationService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         // Start location updates when the service is started
         createNotificationChannel(FIRST_CHANNEL_ID);
-        startForeground(NOTIFICATION_ID++, createNotfication(FIRST_CHANNEL_ID, "Shop Nonstop is currently tracking your location"));
+        startForeground(NOTIFICATION_ID++, createNotification(FIRST_CHANNEL_ID, "Shop Nonstop is currently tracking your location"));
         createNotificationChannel(SECOND_CHANNEL_ID);
         startLocationUpdates();
         return START_STICKY;
@@ -71,7 +68,7 @@ public class LocationService extends Service {
         }
     }
 
-    private Notification createNotfication(String channelId, String content) {
+    private Notification createNotification(String channelId, String content) {
         Notification notification = new NotificationCompat.Builder(this, channelId)
                 .setContentTitle(channelId)
                 .setContentText(content)
@@ -96,7 +93,7 @@ public class LocationService extends Service {
                     Log.i("INFO", "" + distance);
                     if (distance < 5) {
                         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                        Notification notification = createNotfication(SECOND_CHANNEL_ID, "There is a grocery less than 5 miles away, would you like to check it out?");
+                        Notification notification = createNotification(SECOND_CHANNEL_ID, "There is a grocery less than 5 miles away, would you like to check it out?");
                         notificationManager.notify(NOTIFICATION_ID++, notification);
                         break;
                     }
