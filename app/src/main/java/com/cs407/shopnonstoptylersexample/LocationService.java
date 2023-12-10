@@ -29,7 +29,9 @@ public class LocationService extends Service {
     private LocationListener locationListener;
 
     // Places API requires billing info, will use coordinates of groceries in Madison for development
-    private static final double coordinates[][] = new double[][]{{43.07276725579338, -89.39003664417623}, {43.07308515174808, -89.3977415422632}, {43.075295211878796, -89.39613221683253}};
+    // first three are Madison, fourth one is chicago, and fifth one is new york
+    private static final double coordinates[][] = new double[][]{{43.07276725579338, -89.39003664417623}, {43.07308515174808, -89.3977415422632}, {43.075295211878796, -89.39613221683253}, {41.8758, -87.6295}, {40.7117, -74.0065
+    }};
 
     @Override
     public void onCreate() {
@@ -94,9 +96,9 @@ public class LocationService extends Service {
                 for (double[] coordinate : coordinates) {
                     double distance = calculateDistance(userLat, userLong, coordinate[0], coordinate[1]);
                     Log.i("INFO", "" + distance);
-                    if (distance < 5) {
+                    if (distance < 2) {
                         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                        Notification notification = createNotification(SECOND_CHANNEL_ID, "There is a grocery less than 5 miles away, would you like to check it out?");
+                        Notification notification = createNotification(SECOND_CHANNEL_ID, "There is a grocery less than 2 miles away, would you like to check it out?");
                         notificationManager.notify(NOTIFICATION_ID++, notification);
                         break;
                     }

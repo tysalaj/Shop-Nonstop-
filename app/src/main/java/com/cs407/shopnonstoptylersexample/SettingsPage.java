@@ -3,6 +3,7 @@ package com.cs407.shopnonstoptylersexample;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -55,11 +56,17 @@ public class SettingsPage extends AppCompatActivity {
         buttonLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                stopLocationService();
                 SharedPreferences sharedPreferences = getSharedPreferences("com.cs407.shopnonstoptylersexample", MODE_PRIVATE);
                 sharedPreferences.edit().clear().apply();
                 Intent intent = new Intent(SettingsPage.this, MainActivity.class);
                 startActivity(intent);
             }
         });
+    }
+
+    public void stopLocationService() {
+        Log.i("INFO", "Stopping Service");
+        stopService(new Intent(this, LocationService.class));
     }
 }
