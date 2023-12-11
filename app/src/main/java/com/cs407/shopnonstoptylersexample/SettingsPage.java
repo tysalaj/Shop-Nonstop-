@@ -1,5 +1,6 @@
 package com.cs407.shopnonstoptylersexample;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -23,19 +24,11 @@ public class SettingsPage extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         ImageView imageViewUserImage = findViewById(R.id.imageViewUserImage);
         TextView textViewUserName = findViewById(R.id.textViewUserName);
-        TextView textViewUserEmail = findViewById(R.id.textViewUserEmail);
-        Button buttonSetLocation = findViewById(R.id.buttonSetLocation);
         Button buttonSetDistance = findViewById(R.id.buttonSetDistance);
         Button buttonLogout = findViewById(R.id.buttonLogout);
 
-
-        String userName = getIntent().getStringExtra("text");
-        String userEmail = getIntent().getStringExtra("email");
-
-        if (userName != null && userEmail != null) {
-            textViewUserName.setText(userName);
-            textViewUserEmail.setText(userEmail);
-        }
+        String email = auth.getCurrentUser().getEmail();
+        textViewUserName.setText(email);
 
         ImageView shoppingCartIcon = findViewById(R.id.shoppingCartIcon);
         ImageView homePageIcon = findViewById(R.id.homePage);

@@ -109,7 +109,7 @@
                 android:textSize="14sp" />
 
             <Button
-                android:id="@+id/buttonSetLocation2"
+                android:id="@+id/editProfile"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/textViewUserEmail"
@@ -117,18 +117,10 @@
                 android:text="Edit your profile" />
 
             <Button
-                android:id="@+id/buttonSetLocation"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/textViewUserEmail"
-                android:layout_marginBottom="12dp"
-                android:text="Set your location" />
-
-            <Button
                 android:id="@+id/buttonSetDistance"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/buttonSetLocation"
+                android:layout_below="@id/editProfile"
                 android:layout_marginBottom="12dp"
                 android:text="Set distance" />
 
