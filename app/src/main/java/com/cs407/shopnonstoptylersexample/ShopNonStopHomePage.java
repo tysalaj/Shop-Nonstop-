@@ -17,6 +17,7 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -110,9 +111,11 @@ public class ShopNonStopHomePage extends AppCompatActivity {
             mFusedLocationProviderClient.getLastLocation().addOnCompleteListener(this, task -> {
                 Location mLastKnowLocation= task.getResult();
                 if(task.isSuccessful() && mLastKnowLocation != null){
+                    LatLng currLocation = new LatLng(mLastKnowLocation.getLatitude(), mLastKnowLocation.getLongitude());
                     mMap.addMarker(new MarkerOptions()
-                            .position(new LatLng(mLastKnowLocation.getLatitude(), mLastKnowLocation.getLongitude()))
+                            .position(currLocation)
                             .title("My Location"));
+                    mMap.moveCamera(CameraUpdateFactory.newLatLng(currLocation));
                 }
             });
         }
