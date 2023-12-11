@@ -66,19 +66,6 @@ public class ShoppingList extends AppCompatActivity {
             }
         });
 
-        ListView currentShoppingList = (ListView) findViewById(R.id.shoppingListView);
-        currentShoppingList.setClickable(true);
-        currentShoppingList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // hard coded for now, update to dynamic
-                AlertDialog alertDialog = new AlertDialog.Builder(ShoppingList.this).create();
-                alertDialog.setTitle("Ground Beef");
-                alertDialog.setMessage("Nearest Store: Target (0.2 miles, 3 minute walk");
-                alertDialog.show();
-            }
-        });
-
-
         String uid = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
         Log.i("INFO", uid);
         DatabaseReference db = database.getReference();
@@ -87,13 +74,28 @@ public class ShoppingList extends AppCompatActivity {
         uidRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
                 ArrayList<String> items = new ArrayList<>();
                 final ArrayList<String> itemKeys = new ArrayList<>();
+
+                ListView currentShoppingList = (ListView) findViewById(R.id.shoppingListView);
+                currentShoppingList.setClickable(true);
+
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     String key = dataSnapshot.getKey();
                     String itemName = dataSnapshot.getValue(String.class);
                     items.add(itemName);
                     itemKeys.add(key);
+                    currentShoppingList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            AlertDialog alertDialog = new AlertDialog.Builder(ShoppingList.this).create();
+                            alertDialog.setTitle(itemName);
+                            // hard coded for now, update to dynamic
+                            alertDialog.setMessage("Nearest Store: Target (0.2 miles, 3 minute walk");
+                            alertDialog.show();
+                        }
+                    });
+
                 }
                 ArrayAdapter<String> shoppingListAdapter = new ArrayAdapter<>(ShoppingList.this, android.R.layout.simple_list_item_1, items);
                 ListView shoppingListView = findViewById(R.id.shoppingListView);
