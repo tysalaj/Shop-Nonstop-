@@ -116,23 +116,23 @@
                 android:layout_marginBottom="12dp"
                 android:text="Edit your profile" />
 
-            <EditText
-                android:id="@+id/editTextSetDistance"
+            <Button
+                android:id="@+id/buttonSetDistance"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/editProfile"
                 android:layout_marginBottom="12dp"
-                android:hint="Set distance (in miles)"
-                android:inputType="number"
+                android:text="Set Distance (in Miles)"
                 />
 
             <Button
                 android:id="@+id/buttonLogout"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/editTextSetDistance"
+                android:layout_below="@id/buttonSetDistance"
                 android:layout_marginBottom="0dp"
                 android:text="Log out" />
+
         </LinearLayout>
 
     </LinearLayout>
