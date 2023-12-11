@@ -45,6 +45,7 @@ public class ShopNonStopHomePage extends AppCompatActivity {
             mMap = googleMap;
 
             displayLocation();
+
         });
 
         //Obtain a FusesLocationProviderClient
