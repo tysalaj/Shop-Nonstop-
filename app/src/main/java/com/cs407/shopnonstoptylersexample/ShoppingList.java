@@ -18,7 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 
 public class ShoppingList extends AppCompatActivity {
-    static ArrayList<Item> items;
+    private ArrayList<Item> items;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shoppinglistpage);
@@ -28,9 +28,6 @@ public class ShoppingList extends AppCompatActivity {
         ImageView addIcon = findViewById(R.id.addIcon);
         SharedPreferences sharedPreferences = getSharedPreferences("com.cs407.shopnonstoptylersexample", MODE_PRIVATE);
         String username = sharedPreferences.getString("username", "");
-        String upUsername = username.substring(0, 1).toUpperCase() + username.substring(1);
-        TextView textView = findViewById(R.id.subtitleTextView);
-//        textView.setText(upUsername + "'s Shopping List");
 
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,11 +59,6 @@ public class ShoppingList extends AppCompatActivity {
         ArrayAdapter<String> shoppingListAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, shoppingItems);
         ListView shoppingListView = findViewById(R.id.shoppingListView);
         shoppingListView.setAdapter(shoppingListAdapter);
-
-//        ListView shoppingListViewPopular = findViewById(R.id.shoppingListView);
-//        ArrayList<String> shoppingItemsPop = new ArrayList<>();
-//        ArrayAdapter<String> adapterPop = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, shoppingItemsPop);
-//        shoppingListViewPopular.setAdapter(adapterPop);
 
         addIcon.setOnClickListener(new View.OnClickListener() {
             @Override

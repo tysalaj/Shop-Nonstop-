@@ -55,7 +55,7 @@ public class SignupPage extends AppCompatActivity {
                                 Toast.makeText(SignupPage.this, "SignUp Successful", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(SignupPage.this, MainActivity.class));
                             } else {
-                                Toast.makeText(SignupPage.this, "SignUp Failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignupPage.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
