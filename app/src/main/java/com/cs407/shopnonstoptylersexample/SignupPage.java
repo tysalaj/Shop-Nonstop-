@@ -17,11 +17,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Objects;
+
 public class SignupPage extends AppCompatActivity {
 
     private FirebaseAuth auth;
     private EditText editTextEmail, editTextPassword, editTextConfirmPassword;
-    private Button uploadPhoto, buttonSignUpFinal, backToLogin;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,9 +33,9 @@ public class SignupPage extends AppCompatActivity {
         editTextEmail = findViewById(R.id.editTextEmail);
         editTextPassword = findViewById(R.id.editTextPasswordSignUp);
         editTextConfirmPassword = findViewById(R.id.editTextConfirmPassword);
-        uploadPhoto = findViewById(R.id.buttonCaptureImage);
-        buttonSignUpFinal = findViewById(R.id.buttonSignUpFinal);
-        backToLogin = findViewById(R.id.backToLogin);
+        Button uploadPhoto = findViewById(R.id.buttonCaptureImage);
+        Button buttonSignUpFinal = findViewById(R.id.buttonSignUpFinal);
+        Button backToLogin = findViewById(R.id.backToLogin);
 
         buttonSignUpFinal.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,7 +57,7 @@ public class SignupPage extends AppCompatActivity {
                                 Toast.makeText(SignupPage.this, "SignUp Successful", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(SignupPage.this, MainActivity.class));
                             } else {
-                                Toast.makeText(SignupPage.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignupPage.this, Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         }
                     });

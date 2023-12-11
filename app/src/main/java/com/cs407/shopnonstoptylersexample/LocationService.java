@@ -14,6 +14,7 @@ import android.os.Build;
 import android.os.IBinder;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 
@@ -30,7 +31,7 @@ public class LocationService extends Service {
 
     // Places API requires billing info, will use coordinates of groceries in Madison for development
     // first three are Madison, fourth one is chicago, and fifth one is new york
-    private static final double coordinates[][] = new double[][]{{43.07276725579338, -89.39003664417623}, {43.07308515174808, -89.3977415422632}, {43.075295211878796, -89.39613221683253}, {41.8758, -87.6295}, {40.7117, -74.0065
+    private static final double[][] coordinates = new double[][]{{43.07276725579338, -89.39003664417623}, {43.07308515174808, -89.3977415422632}, {43.075295211878796, -89.39613221683253}, {41.8758, -87.6295}, {40.7117, -74.0065
     }};
 
     @Override
@@ -74,7 +75,7 @@ public class LocationService extends Service {
     }
 
     private Notification createNotification(String channelId, String content) {
-        Notification notification = new NotificationCompat.Builder(this, channelId)
+        return new NotificationCompat.Builder(this, channelId)
                 .setContentTitle(channelId)
                 .setContentText(content)
                 .setCategory(Notification.CATEGORY_SERVICE)
@@ -82,14 +83,13 @@ public class LocationService extends Service {
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setOngoing(true)
                 .build();
-        return notification;
     }
 
     private void startLocationUpdates() {
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         locationListener = new LocationListener() {
             @Override
-            public void onLocationChanged(Location location) {
+            public void onLocationChanged(@NonNull Location location) {
                 double userLat = location.getLatitude();
                 double userLong = location.getLongitude();
                 Log.i("INFO", userLat + " " + userLong);

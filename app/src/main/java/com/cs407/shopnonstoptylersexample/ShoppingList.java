@@ -24,14 +24,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ShoppingList extends AppCompatActivity {
-    private FirebaseDatabase database;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shoppinglistpage);
 
-        database = FirebaseDatabase.getInstance();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
         ImageView settings = findViewById(R.id.settingsIcon);
         ImageView homePageIcon = findViewById(R.id.homePage);
         ImageView addIcon = findViewById(R.id.addIcon);
@@ -53,7 +53,7 @@ public class ShoppingList extends AppCompatActivity {
         });
 
 
-        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        String uid = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
         Log.i("INFO", uid);
         DatabaseReference db = database.getReference();
         DatabaseReference uidRef = db.child("users").child(uid).child("items");
@@ -93,13 +93,15 @@ public class ShoppingList extends AppCompatActivity {
                             Toast.makeText(ShoppingList.this, "Item already exists!", Toast.LENGTH_SHORT).show();
                         } else {
                             String itemId = uidRef.push().getKey();
-                            uidRef.child(itemId).setValue(itemName).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void unused) {
-                                    Toast.makeText(ShoppingList.this, "Added New Item", Toast.LENGTH_SHORT).show();
-                                    item.setText("");
-                                }
-                            });
+                            if (itemId != null) {
+                                uidRef.child(itemId).setValue(itemName).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
+                                        Toast.makeText(ShoppingList.this, "Added New Item", Toast.LENGTH_SHORT).show();
+                                        item.setText("");
+                                    }
+                                });
+                            }
                         }
                     }
 

@@ -14,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Objects;
+
 public class SettingsPage extends AppCompatActivity {
     private FirebaseAuth auth;
     @Override
@@ -27,12 +29,11 @@ public class SettingsPage extends AppCompatActivity {
         Button buttonSetDistance = findViewById(R.id.buttonSetDistance);
         Button buttonLogout = findViewById(R.id.buttonLogout);
 
-        String email = auth.getCurrentUser().getEmail();
+        String email = Objects.requireNonNull(auth.getCurrentUser()).getEmail();
         textViewUserName.setText(email);
 
         ImageView shoppingCartIcon = findViewById(R.id.shoppingCartIcon);
         ImageView homePageIcon = findViewById(R.id.homePage);
-
 
         shoppingCartIcon.setOnClickListener(new View.OnClickListener(){
             @Override
