@@ -106,7 +106,7 @@ public class LocationService extends Service {
                     Log.i("INFO", "" + distance);
                     if (distance < distanceValue) {
                         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                        Notification notification = createNotification(SECOND_CHANNEL_ID, "Grocery Store Nearby! Check it out?");
+                        Notification notification = createNotification(SECOND_CHANNEL_ID, "Grocery Store Within " + distanceValue + "! Check it out?");
                         notificationManager.notify(NOTIFICATION_ID++, notification);
                         break;
                     }
