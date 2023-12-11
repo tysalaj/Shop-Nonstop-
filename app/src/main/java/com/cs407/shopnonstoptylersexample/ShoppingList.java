@@ -106,7 +106,7 @@ public class ShoppingList extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 EditText item = findViewById(R.id.addItem);
-                String itemName = item.getText().toString().trim();
+                String itemName = item.getText().toString().trim().toLowerCase();
                 if (itemName.isEmpty()) {
                     Toast.makeText(ShoppingList.this, "Need to enter an item name", Toast.LENGTH_SHORT).show();
                     return;

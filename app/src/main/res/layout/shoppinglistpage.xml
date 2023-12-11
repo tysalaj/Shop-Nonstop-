@@ -154,13 +154,6 @@
                     android:textSize="22sp"
                     android:textStyle="bold" />
 
-                <Button
-                    android:id="@+id/removeListItem"
-                    android:layout_width="121dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Remove" />
-
             </LinearLayout>
 
             <LinearLayout
