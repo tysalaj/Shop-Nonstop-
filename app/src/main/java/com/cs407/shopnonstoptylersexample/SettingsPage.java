@@ -97,6 +97,7 @@ public class SettingsPage extends AppCompatActivity {
                             Toast.makeText(SettingsPage.this, "Cannot set a radius greater than 10 miles", Toast.LENGTH_SHORT).show();
                             return;
                         }
+                        Toast.makeText(SettingsPage.this, "Distance set successfully", Toast.LENGTH_SHORT).show();
                         SharedPreferences sharedPreferences = getSharedPreferences("com.cs407.shopnonstoptylersexample", MODE_PRIVATE);
                         sharedPreferences.edit().putString("distance", distanceValue).apply();
                     }
