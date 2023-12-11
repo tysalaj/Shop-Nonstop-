@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -27,6 +28,17 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class ShoppingList extends AppCompatActivity {
+    private DatabaseReference uidRef;
+    private ArrayAdapter<String> shoppingListAdapter;
+    private ArrayList<String> itemKeys;
+    private void deleteItem(String itemKey) {
+        uidRef.child(itemKey).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Toast.makeText(ShoppingList.this, "Item deleted", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shoppinglistpage);
@@ -62,12 +74,25 @@ public class ShoppingList extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 ArrayList<String> items = new ArrayList<>();
+                final ArrayList<String> itemKeys = new ArrayList<>();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    items.add(dataSnapshot.getValue(String.class));
+                    String key = dataSnapshot.getKey();
+                    String itemName = dataSnapshot.getValue(String.class);
+                    items.add(itemName);
+                    itemKeys.add(key);
                 }
                 ArrayAdapter<String> shoppingListAdapter = new ArrayAdapter<>(ShoppingList.this, android.R.layout.simple_list_item_1, items);
                 ListView shoppingListView = findViewById(R.id.shoppingListView);
                 shoppingListView.setAdapter(shoppingListAdapter);
+
+                shoppingListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                    @Override
+                    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                        String selectedKey = itemKeys.get(position);
+                        deleteItem(selectedKey);
+                        return false;
+                    }
+                });
             }
 
             @Override
@@ -112,5 +137,10 @@ public class ShoppingList extends AppCompatActivity {
                 });
             }
         });
+
+
+
     }
+
+
 }
