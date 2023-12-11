@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,8 +27,12 @@ public class SettingsPage extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         ImageView imageViewUserImage = findViewById(R.id.imageViewUserImage);
         TextView textViewUserName = findViewById(R.id.textViewUserName);
-        Button buttonSetDistance = findViewById(R.id.buttonSetDistance);
         Button buttonLogout = findViewById(R.id.buttonLogout);
+
+        EditText editTextsetDistance = findViewById(R.id.editTextSetDistance);
+
+
+
 
         String email = Objects.requireNonNull(auth.getCurrentUser()).getEmail();
         textViewUserName.setText(email);
@@ -44,10 +49,14 @@ public class SettingsPage extends AppCompatActivity {
         });
 
         homePageIcon.setOnClickListener(new View.OnClickListener(){
+
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(SettingsPage.this, ShopNonStopHomePage.class);
                 startActivity(intent);
+                String distanceValue = editTextsetDistance.getText().toString();
+                SharedPreferences sharedPreferences = getSharedPreferences("com.cs407.shopnonstoptylersexample", MODE_PRIVATE);
+                sharedPreferences.edit().putString("distance", distanceValue).apply();
             }
         });
 

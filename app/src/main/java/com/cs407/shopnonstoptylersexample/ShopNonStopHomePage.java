@@ -13,8 +13,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
 public class ShopNonStopHomePage extends AppCompatActivity {
     private static final int PERMISSION_REQUEST = 12;
+    private GoogleMap googleMap;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shopnonstop_homepage);
@@ -22,6 +31,18 @@ public class ShopNonStopHomePage extends AppCompatActivity {
 
         ImageView settingsIcon = findViewById(R.id.settingsIcon);
         ImageView shoppingCartIcon = findViewById(R.id.shoppingCartIcon);
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapFragment);
+        if (mapFragment != null) {
+            mapFragment.getMapAsync(new OnMapReadyCallback() {
+                @Override
+                public void onMapReady(GoogleMap map) {
+                    googleMap = map;
+                    enableMyLocation();
+                    addRedMarkerAtCurrentLocation(); // Add a red marker at the user's current location
+                }
+            });
+        }
 
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 || ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
@@ -49,6 +70,29 @@ public class ShopNonStopHomePage extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void enableMyLocation() {
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            googleMap.setMyLocationEnabled(true);
+        }
+    }
+
+    private void addRedMarkerAtCurrentLocation() {
+        // Check for permission
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            // Get the user's current location (replace these values with the actual latitude and longitude)
+            LatLng currentLocation = new LatLng(37.7749, -122.4194); // Example coordinates for San Francisco
+
+            // Add a red marker at the user's current location
+            googleMap.addMarker(new MarkerOptions()
+                    .position(currentLocation)
+                    .title("Your Location")
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+
+            // Move the camera to the user's location
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 15));
+        }
     }
 
     @Override

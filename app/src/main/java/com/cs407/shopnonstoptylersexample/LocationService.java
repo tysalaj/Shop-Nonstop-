@@ -6,6 +6,7 @@ import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
@@ -13,6 +14,7 @@ import android.location.LocationListener;
 import android.os.Build;
 import android.os.IBinder;
 import android.util.Log;
+
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -30,9 +32,10 @@ public class LocationService extends Service {
     private LocationListener locationListener;
 
     // Places API requires billing info, will use coordinates of groceries in Madison for development
-    // first three are Madison, fourth one is chicago, and fifth one is new york
+    // first three are Madison, fourth one is chicago, and fifth one is new york, Dallas Texas, LA California,
+    // Seattle, Oconomowoc WI, Waukesha WI
     private static final double[][] coordinates = new double[][]{{43.07276725579338, -89.39003664417623}, {43.07308515174808, -89.3977415422632}, {43.075295211878796, -89.39613221683253}, {41.8758, -87.6295}, {40.7117, -74.0065
-    }};
+    },{32.7784,-96.7963},{34.0543,-118.2411},{47.6070,-122.3335},{43.1058,-88.4774},{43.0124,-88.2281}};
 
     @Override
     public void onCreate() {
@@ -87,16 +90,21 @@ public class LocationService extends Service {
 
     private void startLocationUpdates() {
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("com.cs407.shopnonstoptylersexample", MODE_PRIVATE);
+        String distanceValueStr = sharedPreferences.getString("distance", "2"); // Default to 2 if not found
+        double distanceValue = Double.parseDouble(distanceValueStr);
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(@NonNull Location location) {
                 double userLat = location.getLatitude();
                 double userLong = location.getLongitude();
                 Log.i("INFO", userLat + " " + userLong);
+
                 for (double[] coordinate : coordinates) {
                     double distance = calculateDistance(userLat, userLong, coordinate[0], coordinate[1]);
                     Log.i("INFO", "" + distance);
-                    if (distance < 2) {
+                    if (distance < distanceValue) {
                         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                         Notification notification = createNotification(SECOND_CHANNEL_ID, "Grocery Store Nearby! Check it out?");
                         notificationManager.notify(NOTIFICATION_ID++, notification);
