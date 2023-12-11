@@ -11,9 +11,11 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -61,6 +63,18 @@ public class ShoppingList extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(ShoppingList.this, ShopNonStopHomePage.class);
                 startActivity(intent);
+            }
+        });
+
+        ListView currentShoppingList = (ListView) findViewById(R.id.shoppingListView);
+        currentShoppingList.setClickable(true);
+        currentShoppingList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // hard coded for now, update to dynamic
+                AlertDialog alertDialog = new AlertDialog.Builder(ShoppingList.this).create();
+                alertDialog.setTitle("Ground Beef");
+                alertDialog.setMessage("Nearest Store: Target (0.2 miles, 3 minute walk");
+                alertDialog.show();
             }
         });
 
@@ -115,14 +129,14 @@ public class ShoppingList extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if (snapshot.exists()) {
-                            Toast.makeText(ShoppingList.this, "Item already exists!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ShoppingList.this, "Item already exists", Toast.LENGTH_SHORT).show();
                         } else {
                             String itemId = uidRef.push().getKey();
                             if (itemId != null) {
                                 uidRef.child(itemId).setValue(itemName).addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void unused) {
-                                        Toast.makeText(ShoppingList.this, "Added New Item", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(ShoppingList.this, "Added new ttem", Toast.LENGTH_SHORT).show();
                                         item.setText("");
                                     }
                                 });
