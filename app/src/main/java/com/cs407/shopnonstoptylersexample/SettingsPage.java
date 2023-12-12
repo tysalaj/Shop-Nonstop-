@@ -80,8 +80,7 @@ public class SettingsPage extends AppCompatActivity {
                 builder.setTitle("Edit your bio");
 
                 final EditText input = new EditText(SettingsPage.this);
-                input.setInputType(InputType.TYPE_CLASS_TEXT |
-                        InputType.TYPE_CLASS_TEXT);
+                input.setInputType(InputType.TYPE_CLASS_TEXT);
                 builder.setView(input);
 
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
