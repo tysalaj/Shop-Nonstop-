@@ -33,11 +33,10 @@ public class SettingsPage extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         ImageView imageViewUserImage = findViewById(R.id.imageViewUserImage);
         TextView textViewUserName = findViewById(R.id.textViewUserName);
+        TextView textViewProfileBio = findViewById(R.id.textViewProfileBio);
         Button buttonLogout = findViewById(R.id.buttonLogout);
         Button buttonSetDistance = findViewById(R.id.buttonSetDistance);
-
-
-
+        Button buttonEditProfile = findViewById(R.id.editProfile);
 
         String email = Objects.requireNonNull(auth.getCurrentUser()).getEmail();
         textViewUserName.setText(email);
@@ -71,6 +70,35 @@ public class SettingsPage extends AppCompatActivity {
                 auth.signOut();
                 Intent intent = new Intent(SettingsPage.this, MainActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        buttonEditProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(SettingsPage.this);
+                builder.setTitle("Edit your bio");
+
+                final EditText input = new EditText(SettingsPage.this);
+                input.setInputType(InputType.TYPE_CLASS_TEXT |
+                        InputType.TYPE_CLASS_TEXT);
+                builder.setView(input);
+
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String bio = input.getText().toString();
+                        textViewProfileBio.setText(bio);
+                        Toast.makeText(SettingsPage.this, "Bio updated successfully", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                builder.show();
             }
         });
 

@@ -99,7 +99,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textViewUserEmail"
+                android:id="@+id/textViewProfileBio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/textViewUserName"
@@ -112,7 +112,7 @@
                 android:id="@+id/editProfile"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/textViewUserEmail"
+                android:layout_below="@id/textViewProfileBio"
                 android:layout_marginBottom="12dp"
                 android:text="Edit your profile" />
 
