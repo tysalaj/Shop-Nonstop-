@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("com.cs407.shopnonstoptylersexample", MODE_PRIVATE);
         String username = sharedPreferences.getString("username", "");
 
-        if (!username.equals("")) {
+        if (!username.trim().isEmpty()) {
             gotoHomePage();
         } else {
             setContentView(R.layout.activity_main);

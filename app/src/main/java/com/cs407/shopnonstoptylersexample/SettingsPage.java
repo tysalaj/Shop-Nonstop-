@@ -141,7 +141,7 @@ public class SettingsPage extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String distanceValue = input.getText().toString();
-                        if (distanceValue.trim().equals("")) {
+                        if (distanceValue.trim().isEmpty()) {
                             Toast.makeText(SettingsPage.this, "Cannot enter an empty value", Toast.LENGTH_SHORT).show();
                         } else if (Double.parseDouble(distanceValue) > 10) {
                             Toast.makeText(SettingsPage.this, "Cannot set a radius greater than 10 miles", Toast.LENGTH_SHORT).show();
