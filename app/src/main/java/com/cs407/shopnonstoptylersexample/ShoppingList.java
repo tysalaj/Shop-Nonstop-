@@ -1,20 +1,14 @@
 package com.cs407.shopnonstoptylersexample;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.InputType;
-import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -61,7 +55,6 @@ public class ShoppingList extends AppCompatActivity {
 
         ArrayList<String> itemKeys = new ArrayList<>();
         String uid = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
-        Log.i("INFO", uid);
         DatabaseReference db = database.getReference();
         DatabaseReference uidRef = db.child("users").child(uid).child("items");
 
