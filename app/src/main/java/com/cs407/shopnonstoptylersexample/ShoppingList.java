@@ -34,17 +34,14 @@ import java.util.Objects;
 import java.util.Random;
 
 public class ShoppingList extends AppCompatActivity {
-    private DatabaseReference uidRef;
-    private ArrayAdapter<String> shoppingListAdapter;
-    private ArrayList<String> itemKeys;
-    private void deleteItem(String itemKey) {
-        uidRef.child(itemKey).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-                Toast.makeText(ShoppingList.this, "Item deleted", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
+//    private void deleteItem(String itemKey) {
+//        uidRef.child(itemKey).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+//            @Override
+//            public void onSuccess(Void unused) {
+//                Toast.makeText(ShoppingList.this, "Item deleted", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shoppinglistpage);
@@ -70,6 +67,13 @@ public class ShoppingList extends AppCompatActivity {
             }
         });
 
+        ArrayList<String> itemKeys = new ArrayList<>();
+        String uid = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
+        Log.i("INFO", uid);
+        DatabaseReference db = database.getReference();
+        DatabaseReference uidRef = db.child("users").child(uid).child("items");
+
+
         ListView currentShoppingList = (ListView) findViewById(R.id.shoppingListView);
         currentShoppingList.setClickable(true);
         currentShoppingList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -88,7 +92,12 @@ public class ShoppingList extends AppCompatActivity {
                 dialogBox.setNegativeButton("Delete Item", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                       // implement delete function
+                        uidRef.child(itemKeys.get(position)).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                Log.i("INFO", "Successfully Deleted");
+                            }
+                        });
                     }
                 });
                 dialogBox.show();
@@ -101,7 +110,8 @@ public class ShoppingList extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 final int randomNumber = new Random().nextInt(30) + 10;
                 AlertDialog.Builder dialogBox = new AlertDialog.Builder(ShoppingList.this);
-                dialogBox.setTitle(mostPopularShoppingList.getItemAtPosition(position).toString());
+                String itemName = mostPopularShoppingList.getItemAtPosition(position).toString();
+                dialogBox.setTitle(itemName);
                 dialogBox.setMessage("Shopped for this item " + randomNumber + " times!");
                 dialogBox.setPositiveButton("Delete Item", new DialogInterface.OnClickListener() {
                     @Override
@@ -119,37 +129,20 @@ public class ShoppingList extends AppCompatActivity {
             }
         });
 
-        String uid = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
-        Log.i("INFO", uid);
-        DatabaseReference db = database.getReference();
-        DatabaseReference uidRef = db.child("users").child(uid).child("items");
-
         uidRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
+                itemKeys.clear();
                 ArrayList<String> items = new ArrayList<>();
-                final ArrayList<String> itemKeys = new ArrayList<>();
 
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    String key = dataSnapshot.getKey();
-                    String itemName = dataSnapshot.getValue(String.class);
-                    items.add(itemName);
-                    itemKeys.add(key);
-
+                    items.add(dataSnapshot.getValue(String.class));
+                    itemKeys.add(dataSnapshot.getKey());
                 }
                 ArrayAdapter<String> shoppingListAdapter = new ArrayAdapter<>(ShoppingList.this, android.R.layout.simple_list_item_1, items);
                 ListView shoppingListView = findViewById(R.id.shoppingListView);
                 shoppingListView.setAdapter(shoppingListAdapter);
 
-                shoppingListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-                    @Override
-                    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                        String selectedKey = itemKeys.get(position);
-                        deleteItem(selectedKey);
-                        return false;
-                    }
-                });
             }
 
             @Override
