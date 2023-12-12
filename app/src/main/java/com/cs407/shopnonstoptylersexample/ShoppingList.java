@@ -1,9 +1,11 @@
 package com.cs407.shopnonstoptylersexample;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -29,6 +31,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Random;
 
 public class ShoppingList extends AppCompatActivity {
     private DatabaseReference uidRef;
@@ -72,10 +75,45 @@ public class ShoppingList extends AppCompatActivity {
         currentShoppingList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // hard coded for now, update to dynamic
-                AlertDialog dialogBox = new AlertDialog.Builder(ShoppingList.this).create();
+                AlertDialog.Builder dialogBox = new AlertDialog.Builder(ShoppingList.this);
                 dialogBox.setTitle(currentShoppingList.getItemAtPosition(position).toString());
                 dialogBox.setMessage("Nearest Store: Target (0.2 miles, 3 minute walk");
-                dialogBox.setIcon(R.drawable.delete_button);
+                dialogBox.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                dialogBox.setNegativeButton("Minimize", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                dialogBox.show();
+            }
+        });
+
+        ListView mostPopularShoppingList = (ListView) findViewById(R.id.mostPopularItemsList);
+        mostPopularShoppingList.setClickable(true);
+        mostPopularShoppingList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                final int randomNumber = new Random().nextInt(30) + 10;
+                AlertDialog.Builder dialogBox = new AlertDialog.Builder(ShoppingList.this);
+                dialogBox.setTitle(mostPopularShoppingList.getItemAtPosition(position).toString());
+                dialogBox.setMessage("Shopped for this item " + randomNumber + " times!");
+                dialogBox.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                dialogBox.setNegativeButton("Minimize", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
                 dialogBox.show();
             }
         });
