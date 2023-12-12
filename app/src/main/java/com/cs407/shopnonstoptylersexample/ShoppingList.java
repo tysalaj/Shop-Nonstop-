@@ -127,7 +127,6 @@ public class ShoppingList extends AppCompatActivity {
                 ArrayAdapter<String> shoppingListAdapter = new ArrayAdapter<>(ShoppingList.this, android.R.layout.simple_list_item_1, items);
                 ListView shoppingListView = findViewById(R.id.shoppingListView);
                 shoppingListView.setAdapter(shoppingListAdapter);
-
             }
 
             @Override

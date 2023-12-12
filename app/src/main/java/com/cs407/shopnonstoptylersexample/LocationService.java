@@ -20,6 +20,15 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.Objects;
+
 
 public class LocationService extends Service {
 
@@ -91,26 +100,43 @@ public class LocationService extends Service {
     private void startLocationUpdates() {
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
-        SharedPreferences sharedPreferences = getSharedPreferences("com.cs407.shopnonstoptylersexample", MODE_PRIVATE);
-        String distanceValueStr = sharedPreferences.getString("distance", "2"); // Default to 2 if not found
-        double distanceValue = Double.parseDouble(distanceValueStr);
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(@NonNull Location location) {
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                String uid = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
+                DatabaseReference db = database.getReference();
+                DatabaseReference uidRef = db.child("users").child(uid);
+
                 double userLat = location.getLatitude();
                 double userLong = location.getLongitude();
                 Log.i("INFO", userLat + " " + userLong);
 
-                for (double[] coordinate : coordinates) {
-                    double distance = calculateDistance(userLat, userLong, coordinate[0], coordinate[1]);
-                    Log.i("INFO", "" + distance);
-                    if (distance < distanceValue) {
-                        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                        Notification notification = createNotification(SECOND_CHANNEL_ID, "Grocery Store Within " + distanceValue + " miles! Check it out!");
-                        notificationManager.notify(NOTIFICATION_ID++, notification);
-                        break;
+                uidRef.child("distance").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        String maxRadius = "";
+                        if (snapshot.exists()) {
+                            maxRadius = Objects.requireNonNull(snapshot.getValue(String.class)).trim();
+                        }
+                        for (double[] coordinate : coordinates) {
+                            double maxRadiusValue = !maxRadius.isEmpty() ? Double.parseDouble(maxRadius) : 2;
+                            double distance = calculateDistance(userLat, userLong, coordinate[0], coordinate[1]);
+                            Log.i("INFO", "" + distance);
+                            if (distance < maxRadiusValue) {
+                                NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                                Notification notification = createNotification(SECOND_CHANNEL_ID, "Grocery Store Within " + maxRadiusValue + " miles! Check it out!");
+                                notificationManager.notify(NOTIFICATION_ID++, notification);
+                                break;
+                            }
+                        }
                     }
-                }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
             }
         };
 

@@ -12,10 +12,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Objects;
 
@@ -37,10 +43,27 @@ public class SettingsPage extends AppCompatActivity {
         String email = Objects.requireNonNull(auth.getCurrentUser()).getEmail();
         textViewUserName.setText(email);
 
-        String bio = sharedPreferences.getString("bio", "");
-        if (!bio.equals("")) {
-            textViewProfileBio.setText(bio);
-        }
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        String uid = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
+        DatabaseReference db = database.getReference();
+        DatabaseReference uidRef = db.child("users").child(uid);
+
+        uidRef.child("bio").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    textViewProfileBio.setText(snapshot.getValue(String.class));
+                } else {
+                    textViewProfileBio.setText("No Bio :(");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
 
         ImageView shoppingCartIcon = findViewById(R.id.shoppingCartIcon);
         ImageView homePageIcon = findViewById(R.id.homePage);
@@ -88,8 +111,7 @@ public class SettingsPage extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         String bio = input.getText().toString();
                         textViewProfileBio.setText(bio);
-                        SharedPreferences sharedPreferences = getSharedPreferences("com.cs407.shopnonstoptylersexample", MODE_PRIVATE);
-                        sharedPreferences.edit().putString("bio", bio).apply();
+                        uidRef.child("bio").setValue(bio);
                         Toast.makeText(SettingsPage.this, "Bio updated successfully", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -121,14 +143,12 @@ public class SettingsPage extends AppCompatActivity {
                         String distanceValue = input.getText().toString();
                         if (distanceValue.trim().equals("")) {
                             Toast.makeText(SettingsPage.this, "Cannot enter an empty value", Toast.LENGTH_SHORT).show();
-                            return;
                         } else if (Double.parseDouble(distanceValue) > 10) {
                             Toast.makeText(SettingsPage.this, "Cannot set a radius greater than 10 miles", Toast.LENGTH_SHORT).show();
-                            return;
+                        } else {
+                            Toast.makeText(SettingsPage.this, "Distance set successfully", Toast.LENGTH_SHORT).show();
+                            uidRef.child("distance").setValue(distanceValue);
                         }
-                        Toast.makeText(SettingsPage.this, "Distance set successfully", Toast.LENGTH_SHORT).show();
-                        SharedPreferences sharedPreferences = getSharedPreferences("com.cs407.shopnonstoptylersexample", MODE_PRIVATE);
-                        sharedPreferences.edit().putString("distance", distanceValue).apply();
                     }
                 });
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
