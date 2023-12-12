@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -19,9 +20,14 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
     private FirebaseAuth auth;
+
+    private TextView textViewForgotPassword;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        textViewForgotPassword = findViewById(R.id.textViewForgotPassword);
 
         SharedPreferences sharedPreferences = getSharedPreferences("com.cs407.shopnonstoptylersexample", MODE_PRIVATE);
         String username = sharedPreferences.getString("username", "");
@@ -70,6 +76,13 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+//        textViewForgotPassword.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(MainActivity.this, ForgotPassword.class);
+//                startActivity(intent);
+//            }
+//        });
 
     }
     public void gotoHomePage() {

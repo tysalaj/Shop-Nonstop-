@@ -45,13 +45,9 @@ import java.io.IOException;
 
 public class SettingsPage extends AppCompatActivity {
     private FirebaseAuth auth;
-
     Button BSelectImage;
-
     ImageView IVPreviewImage;
-
     int SELECT_PICTURE = 200;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
