@@ -61,6 +61,7 @@ public class SettingsPage extends AppCompatActivity {
         Button buttonLogout = findViewById(R.id.buttonLogout);
         Button buttonSetDistance = findViewById(R.id.buttonSetDistance);
         Button buttonEditProfile = findViewById(R.id.editProfile);
+        Button changePassword = findViewById(R.id.changePassword);
         // register the UI widgets with their appropriate IDs
         BSelectImage = findViewById(R.id.BSelectImage);
         IVPreviewImage = findViewById(R.id.imageViewUserImage);
@@ -115,6 +116,15 @@ public class SettingsPage extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(SettingsPage.this, ShopNonStopHomePage.class);
+                startActivity(intent);
+            }
+        });
+
+        changePassword.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent(SettingsPage.this, ChangePassword.class);
                 startActivity(intent);
             }
         });

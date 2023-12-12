@@ -1,16 +1,10 @@
 <resources>
     <string name="app_name">Shop NonStop</string>
-    <string-array
-        name="popular_items">
-        <item
-            >apples</item>
-        <item
-            >bread</item>
-        <item
-            >cheese</item>
-        <item
-            >chicken</item>
-        <item
-            >spinach</item>
+    <string-array name="popular_items">
+        <item>apples</item>
+        <item>bread</item>
+        <item>cheese</item>
+        <item>chicken</item>
+        <item>spinach</item>
     </string-array>
 </resources>
