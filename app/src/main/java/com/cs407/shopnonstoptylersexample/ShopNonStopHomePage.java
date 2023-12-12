@@ -108,7 +108,7 @@ public class ShopNonStopHomePage extends AppCompatActivity {
                     mMap.addMarker(new MarkerOptions()
                             .position(currLocation)
                             .title("My Location"));
-                    mMap.moveCamera(CameraUpdateFactory.newLatLng(currLocation));
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currLocation, 17));
                 }
             });
         }
