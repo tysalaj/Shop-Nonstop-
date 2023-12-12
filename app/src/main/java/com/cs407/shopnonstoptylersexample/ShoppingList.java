@@ -113,13 +113,13 @@ public class ShoppingList extends AppCompatActivity {
                 String itemName = mostPopularShoppingList.getItemAtPosition(position).toString();
                 dialogBox.setTitle(itemName);
                 dialogBox.setMessage("Shopped for this item " + randomNumber + " times!");
-                dialogBox.setPositiveButton("Delete Item", new DialogInterface.OnClickListener() {
+                dialogBox.setPositiveButton("Minimize", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
                     }
                 });
-                dialogBox.setNegativeButton("Minimize", new DialogInterface.OnClickListener() {
+                dialogBox.setNegativeButton("Delete Item", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
