@@ -85,10 +85,10 @@ public class ShoppingList extends AppCompatActivity {
                         startActivity(intent);
                     }
                 });
-                dialogBox.setNegativeButton("Minimize", new DialogInterface.OnClickListener() {
+                dialogBox.setNegativeButton("Delete Item", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
+                       // implement delete function
                     }
                 });
                 dialogBox.show();
@@ -103,7 +103,7 @@ public class ShoppingList extends AppCompatActivity {
                 AlertDialog.Builder dialogBox = new AlertDialog.Builder(ShoppingList.this);
                 dialogBox.setTitle(mostPopularShoppingList.getItemAtPosition(position).toString());
                 dialogBox.setMessage("Shopped for this item " + randomNumber + " times!");
-                dialogBox.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                dialogBox.setPositiveButton("Delete Item", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
