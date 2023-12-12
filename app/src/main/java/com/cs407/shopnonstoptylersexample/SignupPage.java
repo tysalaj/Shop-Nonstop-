@@ -31,7 +31,6 @@ public class SignupPage extends AppCompatActivity {
         editTextEmail = findViewById(R.id.editTextEmail);
         editTextPassword = findViewById(R.id.editTextPasswordSignUp);
         editTextConfirmPassword = findViewById(R.id.editTextConfirmPassword);
-        Button uploadPhoto = findViewById(R.id.buttonCaptureImage);
         Button buttonSignUpFinal = findViewById(R.id.buttonSignUpFinal);
         Button backToLogin = findViewById(R.id.backToLogin);
 
@@ -60,14 +59,6 @@ public class SignupPage extends AppCompatActivity {
                         }
                     });
                 }
-            }
-        });
-
-        uploadPhoto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // implement code to upload photo from photo library
-                Intent intent = new Intent(Intent.ACTION_PICK);
             }
         });
 

@@ -82,19 +82,13 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent">
 
-        <Button
-            android:id="@+id/buttonCaptureImage"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/editTextConfirmPassword"
-            android:gravity="center"
-            android:text="Upload Photo" />
+
 
         <Button
             android:id="@+id/buttonSignUpFinal"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/buttonCaptureImage"
+            android:layout_below="@id/editTextConfirmPassword"
             android:layout_marginRight="0dp"
             android:text="Sign Up" />
 
