@@ -34,14 +34,6 @@ import java.util.Objects;
 import java.util.Random;
 
 public class ShoppingList extends AppCompatActivity {
-//    private void deleteItem(String itemKey) {
-//        uidRef.child(itemKey).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
-//            @Override
-//            public void onSuccess(Void unused) {
-//                Toast.makeText(ShoppingList.this, "Item deleted", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shoppinglistpage);
@@ -187,10 +179,5 @@ public class ShoppingList extends AppCompatActivity {
                 });
             }
         });
-
-
-
     }
-
-
 }
