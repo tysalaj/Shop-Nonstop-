@@ -18,6 +18,10 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.logging.Handler;
+
 
 public class MainActivity extends AppCompatActivity {
     private FirebaseAuth auth;
