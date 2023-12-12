@@ -95,7 +95,7 @@ public class ShoppingList extends AppCompatActivity {
                         uidRef.child(itemKeys.get(position)).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
-                                Log.i("INFO", "Successfully Deleted");
+                                Toast.makeText(ShoppingList.this, "Removed Item!", Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
