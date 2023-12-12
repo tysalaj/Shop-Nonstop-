@@ -69,6 +69,7 @@ public class SignupPage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // implement code to upload photo from photo library
+                Intent intent = new Intent(Intent.ACTION_PICK);
             }
         });
 
