@@ -74,14 +74,15 @@ public class ShoppingList extends AppCompatActivity {
         currentShoppingList.setClickable(true);
         currentShoppingList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // hard coded for now, update to dynamic
+                final int distance = new Random().nextInt(6);
                 AlertDialog.Builder dialogBox = new AlertDialog.Builder(ShoppingList.this);
                 dialogBox.setTitle(currentShoppingList.getItemAtPosition(position).toString());
-                dialogBox.setMessage("Nearest Store: Target (0.2 miles, 3 minute walk");
-                dialogBox.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                dialogBox.setMessage("Found this grocery item within " + distance + " miles of you!");
+                dialogBox.setPositiveButton("Shop Now", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
+                        Intent intent = new Intent(ShoppingList.this, ShopNonStopHomePage.class);
+                        startActivity(intent);
                     }
                 });
                 dialogBox.setNegativeButton("Minimize", new DialogInterface.OnClickListener() {
