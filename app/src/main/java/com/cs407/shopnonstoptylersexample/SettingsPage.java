@@ -30,6 +30,7 @@ public class SettingsPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settingspage);
 
+        SharedPreferences sharedPreferences = getSharedPreferences("com.cs407.shopnonstoptylersexample", MODE_PRIVATE);
         auth = FirebaseAuth.getInstance();
         ImageView imageViewUserImage = findViewById(R.id.imageViewUserImage);
         TextView textViewUserName = findViewById(R.id.textViewUserName);
@@ -40,6 +41,11 @@ public class SettingsPage extends AppCompatActivity {
 
         String email = Objects.requireNonNull(auth.getCurrentUser()).getEmail();
         textViewUserName.setText(email);
+
+        String bio = sharedPreferences.getString("bio", "");
+        if (!bio.equals("")) {
+            textViewProfileBio.setText(bio);
+        }
 
         ImageView shoppingCartIcon = findViewById(R.id.shoppingCartIcon);
         ImageView homePageIcon = findViewById(R.id.homePage);
@@ -65,7 +71,6 @@ public class SettingsPage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 stopService(new Intent(SettingsPage.this, LocationService.class));
-                SharedPreferences sharedPreferences = getSharedPreferences("com.cs407.shopnonstoptylersexample", MODE_PRIVATE);
                 sharedPreferences.edit().clear().apply();
                 auth.signOut();
                 Intent intent = new Intent(SettingsPage.this, MainActivity.class);
@@ -88,6 +93,8 @@ public class SettingsPage extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         String bio = input.getText().toString();
                         textViewProfileBio.setText(bio);
+                        SharedPreferences sharedPreferences = getSharedPreferences("com.cs407.shopnonstoptylersexample", MODE_PRIVATE);
+                        sharedPreferences.edit().putString("bio", bio).apply();
                         Toast.makeText(SettingsPage.this, "Bio updated successfully", Toast.LENGTH_SHORT).show();
                     }
                 });
