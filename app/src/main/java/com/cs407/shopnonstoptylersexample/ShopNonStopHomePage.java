@@ -30,11 +30,6 @@ public class ShopNonStopHomePage extends AppCompatActivity {
     private static final int PERMISSION_REQUEST = 12;
     private FusedLocationProviderClient mFusedLocationProviderClient;
     private GoogleMap mMap;
-    private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION =12;
-
-
-
-
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,9 +81,6 @@ public class ShopNonStopHomePage extends AppCompatActivity {
 
     }
 
-
-
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -106,7 +98,7 @@ public class ShopNonStopHomePage extends AppCompatActivity {
     private void displayLocation() {
         int permission = ActivityCompat.checkSelfPermission(this.getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION);
         if (permission == PackageManager.PERMISSION_DENIED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSION_REQUEST);
         }
         else{
             mFusedLocationProviderClient.getLastLocation().addOnCompleteListener(this, task -> {

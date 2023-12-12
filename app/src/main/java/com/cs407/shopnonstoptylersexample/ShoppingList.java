@@ -126,21 +126,21 @@ public class ShoppingList extends AppCompatActivity {
                 EditText item = findViewById(R.id.addItem);
                 String itemName = item.getText().toString().trim().toLowerCase();
                 if (itemName.isEmpty()) {
-                    Toast.makeText(ShoppingList.this, "Need to enter an item name", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ShoppingList.this, "Need to enter an item name!", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 uidRef.orderByValue().equalTo(itemName).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if (snapshot.exists()) {
-                            Toast.makeText(ShoppingList.this, "Item already exists", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ShoppingList.this, "Item already exists!", Toast.LENGTH_SHORT).show();
                         } else {
                             String itemId = uidRef.push().getKey();
                             if (itemId != null) {
                                 uidRef.child(itemId).setValue(itemName).addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void unused) {
-                                        Toast.makeText(ShoppingList.this, "Added new ttem", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(ShoppingList.this, "Added new item!", Toast.LENGTH_SHORT).show();
                                         item.setText("");
                                     }
                                 });
