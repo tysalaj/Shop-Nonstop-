@@ -42,11 +42,8 @@ public class ShopNonStopHomePage extends AppCompatActivity {
         //Obtain a FusesLocationProviderClient
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
-
         ImageView settingsIcon = findViewById(R.id.settingsIcon);
         ImageView shoppingCartIcon = findViewById(R.id.shoppingCartIcon);
-
-
 
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 || ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {

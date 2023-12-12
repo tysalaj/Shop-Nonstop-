@@ -10,8 +10,6 @@ import android.widget.Toast;
 
 public class ChangePassword extends AppCompatActivity {
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +34,5 @@ public class ChangePassword extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
 }

@@ -20,7 +20,6 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
     private FirebaseAuth auth;
-
     private TextView textViewForgotPassword;
 
     @Override

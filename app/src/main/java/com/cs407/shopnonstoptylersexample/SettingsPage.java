@@ -99,7 +99,6 @@ public class SettingsPage extends AppCompatActivity {
             }
         });
 
-
         ImageView shoppingCartIcon = findViewById(R.id.shoppingCartIcon);
         ImageView homePageIcon = findViewById(R.id.homePage);
 
@@ -208,8 +207,6 @@ public class SettingsPage extends AppCompatActivity {
         });
     }
 
-
-
     private void imageChooser()
     {
         Intent i = new Intent();
@@ -246,7 +243,4 @@ public class SettingsPage extends AppCompatActivity {
                     }
                 }
             });
-
-
-
 }

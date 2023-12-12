@@ -58,7 +58,6 @@ public class ShoppingList extends AppCompatActivity {
         DatabaseReference db = database.getReference();
         DatabaseReference uidRef = db.child("users").child(uid).child("items");
 
-
         ListView currentShoppingList = (ListView) findViewById(R.id.shoppingListView);
         currentShoppingList.setClickable(true);
         currentShoppingList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -134,7 +133,6 @@ public class ShoppingList extends AppCompatActivity {
 
             }
         });
-
 
         addIcon.setOnClickListener(new View.OnClickListener() {
             @Override

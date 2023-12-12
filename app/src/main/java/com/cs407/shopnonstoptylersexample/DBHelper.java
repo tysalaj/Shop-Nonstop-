@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 public class DBHelper {
     static SQLiteDatabase sqLiteDatabase;
-
     public DBHelper (SQLiteDatabase sqLiteDatabase) {
         this.sqLiteDatabase = sqLiteDatabase;
     }
