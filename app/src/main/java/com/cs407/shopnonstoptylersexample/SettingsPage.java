@@ -32,7 +32,6 @@ public class SettingsPage extends AppCompatActivity {
 
         SharedPreferences sharedPreferences = getSharedPreferences("com.cs407.shopnonstoptylersexample", MODE_PRIVATE);
         auth = FirebaseAuth.getInstance();
-        ImageView imageViewUserImage = findViewById(R.id.imageViewUserImage);
         TextView textViewUserName = findViewById(R.id.textViewUserName);
         TextView textViewProfileBio = findViewById(R.id.textViewProfileBio);
         Button buttonLogout = findViewById(R.id.buttonLogout);
